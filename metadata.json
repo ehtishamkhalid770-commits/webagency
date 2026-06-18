@@ -1,0 +1,6 @@
+{
+  "name": "Vortex Web Studio",
+  "description": "A high-performance modern web agency with stunning designs, parallax scrolling, and black & red interactive aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -148,13 +148,13 @@ export default function EstimatorModal({ onInjectBlueprint }: EstimatorProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Options select pane */}
-          <div className="lg:col-span-7 bg-[#090909]/90 border border-white/5 rounded-xl p-6 sm:p-8 space-y-8" id="estimator-form">
+          <div className="lg:col-span-7 cyber-glass-card border border-white/10 rounded-2xl p-6 sm:p-8 space-y-8" id="estimator-form">
             
             {/* Project Type Grid */}
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Sliders className="w-4 h-4 text-brand-red" />
-                <span className="font-mono text-xs text-gray-400 uppercase tracking-wider font-semibold">1. SELECT STRUCTURAL ARCHETYPE</span>
+                <span className="font-mono text-xs text-gray-300 uppercase tracking-wider font-semibold">// 1. SELECT STRUCTURAL ARCHETYPE</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
@@ -167,10 +167,10 @@ export default function EstimatorModal({ onInjectBlueprint }: EstimatorProps) {
                     key={tier.id}
                     type="button"
                     onClick={() => setOptions({ ...options, projectType: tier.id as any })}
-                    className={`p-4 rounded-lg border text-left cursor-pointer transition-luxury flex flex-col justify-between h-28 ${
+                    className={`p-4 rounded-xl border text-left cursor-pointer transition-luxury flex flex-col justify-between h-28 relative overflow-hidden ${
                       options.projectType === tier.id
-                        ? 'border-brand-red bg-brand-red/5 hover:bg-brand-red/10'
-                        : 'border-white/5 bg-[#0f0f0f]/60 hover:border-white/15'
+                        ? 'border-brand-red bg-brand-red/10 shadow-[0_0_20px_rgba(255,30,39,0.15)] bg-slate-900/40'
+                        : 'border-white/5 bg-[#080808]/40 hover:border-white/20'
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -180,7 +180,7 @@ export default function EstimatorModal({ onInjectBlueprint }: EstimatorProps) {
                       {options.projectType === tier.id && <CheckCircle className="w-4 h-4 text-brand-red" />}
                     </div>
                     <div>
-                      <div className="text-gray-400 font-bold font-mono text-xs mt-1">{tier.price}</div>
+                      <div className="text-gray-300 font-bold font-mono text-xs mt-1">{tier.price}</div>
                       <div className="text-gray-500 font-sans text-[10px] mt-0.5">{tier.tech}</div>
                     </div>
                   </button>
@@ -191,30 +191,30 @@ export default function EstimatorModal({ onInjectBlueprint }: EstimatorProps) {
             {/* Pages Slider counter */}
             <div>
               <div className="flex justify-between items-center mb-4">
-                <span className="font-mono text-xs text-gray-400 uppercase tracking-wider font-semibold">2. VIEWS OR PAGE ROUTE COUNT</span>
+                <span className="font-mono text-xs text-gray-300 uppercase tracking-wider font-semibold">// 2. VIEWS OR PAGE ROUTE COUNT</span>
                 <span className="font-mono text-xs text-brand-red font-bold select-none">{options.pagesCount} Active Templates</span>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 bg-black/50 p-4 rounded-xl border border-white/5">
                 <input
                   type="range"
                   min="1"
                   max="30"
                   value={options.pagesCount}
                   onChange={(e) => setOptions({ ...options, pagesCount: parseInt(e.target.value) })}
-                  className="w-full accent-brand-red h-1.5 bg-[#171717] rounded-full appearance-none cursor-pointer"
+                  className="w-full accent-brand-red h-1.5 bg-[#171717] rounded-full appearance-none cursor-pointer text-brand-red"
                 />
                 <div className="flex items-center gap-1 shrink-0">
                   <button
                     type="button"
                     onClick={() => setOptions({ ...options, pagesCount: Math.max(1, options.pagesCount - 1) })}
-                    className="w-8 h-8 rounded bg-white/5 hover:bg-white/10 flex items-center justify-center font-bold text-sm text-gray-400 hover:text-white cursor-pointer active:scale-95"
+                    className="w-8 h-8 rounded bg-white/5 hover:bg-white/10 flex items-center justify-center font-bold text-sm text-gray-400 hover:text-white cursor-pointer active:scale-95 transition-all"
                   >
                     -
                   </button>
                   <button
                     type="button"
                     onClick={() => setOptions({ ...options, pagesCount: Math.min(30, options.pagesCount + 1) })}
-                    className="w-8 h-8 rounded bg-white/5 hover:bg-white/10 flex items-center justify-center font-bold text-sm text-gray-400 hover:text-white cursor-pointer active:scale-95"
+                    className="w-8 h-8 rounded bg-white/5 hover:bg-white/10 flex items-center justify-center font-bold text-sm text-gray-400 hover:text-white cursor-pointer active:scale-95 transition-all"
                   >
                     +
                   </button>
@@ -225,7 +225,7 @@ export default function EstimatorModal({ onInjectBlueprint }: EstimatorProps) {
 
             {/* Specialized components check */}
             <div>
-              <span className="font-mono text-xs text-gray-400 uppercase tracking-wider font-semibold block mb-4">3. INTEGRATED CUSTOM SYSTEM DECK</span>
+              <span className="font-mono text-xs text-gray-300 uppercase tracking-wider font-semibold block mb-4">// 3. INTEGRATED CUSTOM SYSTEM DECK</span>
               <div className="space-y-3">
                 {[
                   { id: 'hasAnimations', label: 'Parallax Architecture & Framer Motion Transitions', price: '+$800', desc: 'Sensationally smooth visual transitions & hover micro-interactions' },
@@ -236,21 +236,21 @@ export default function EstimatorModal({ onInjectBlueprint }: EstimatorProps) {
                   return (
                     <label
                       key={element.id}
-                      className={`flex gap-3.5 p-4 rounded-lg border cursor-pointer transition-luxury items-start ${
+                      className={`flex gap-3.5 p-4 rounded-xl border cursor-pointer transition-luxury items-start ${
                         isChecked 
-                          ? 'border-brand-red/40 bg-brand-red/5' 
-                          : 'border-white/5 bg-[#0f0f0f]/40 hover:border-white/10'
+                          ? 'border-brand-red/40 bg-brand-red/10' 
+                          : 'border-white/5 bg-[#080808]/40 hover:border-white/12'
                       }`}
                     >
                       <input
                         type="checkbox"
                         checked={isChecked}
                         onChange={(e) => setOptions({ ...options, [element.id]: e.target.checked })}
-                        className="mt-1 accent-brand-red w-4 h-4 rounded"
+                        className="mt-1 accent-brand-red w-4 h-4 rounded cursor-pointer"
                       />
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
-                          <span className="font-display font-medium text-xs sm:text-sm text-white">{element.label}</span>
+                          <span className={`font-display font-medium text-xs sm:text-sm ${isChecked ? 'text-brand-red' : 'text-gray-300'}`}>{element.label}</span>
                           <span className="font-mono text-xs font-bold text-brand-red">{element.price}</span>
                         </div>
                         <p className="text-gray-500 text-[10px] sm:text-xs mt-1 leading-relaxed">{element.desc}</p>
@@ -265,7 +265,7 @@ export default function EstimatorModal({ onInjectBlueprint }: EstimatorProps) {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <CalendarClock className="w-4 h-4 text-brand-red" />
-                <span className="font-mono text-xs text-gray-400 uppercase tracking-wider font-semibold">4. PRIORITY TIMELINE DISPATCH</span>
+                <span className="font-mono text-xs text-gray-300 uppercase tracking-wider font-semibold">// 4. PRIORITY TIMELINE DISPATCH</span>
               </div>
               <div className="grid grid-cols-3 gap-2">
                 {[
@@ -277,10 +277,10 @@ export default function EstimatorModal({ onInjectBlueprint }: EstimatorProps) {
                     key={time.id}
                     type="button"
                     onClick={() => setOptions({ ...options, deliveryTimeline: time.id as any })}
-                    className={`py-3.5 px-2 rounded border text-center cursor-pointer transition-luxury ${
+                    className={`py-3.5 px-2 rounded-xl border text-center cursor-pointer transition-luxury ${
                       options.deliveryTimeline === time.id
-                        ? 'border-brand-red bg-brand-red/5 text-white font-bold'
-                        : 'border-white/5 bg-[#0f0f0f]/40 hover:border-white/10 text-gray-400'
+                        ? 'border-brand-red bg-brand-red/10 text-white font-bold shadow-[0_0_15px_rgba(255,30,39,0.1)]'
+                        : 'border-white/5 bg-[#080808]/40 hover:border-white/15 text-gray-400'
                     }`}
                   >
                     <div className="font-display text-xs font-bold">{time.label}</div>

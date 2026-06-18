@@ -153,7 +153,7 @@ export default function Hero({ onOpenEstimator, onScrollToContact }: HeroProps) 
 
         {/* RIGHT COLUMN: The Interactive Custom Cyber Panel Cockpit */}
         <div 
-          className="lg:col-span-5 relative w-full h-[360px] sm:h-[440px]"
+          className="lg:col-span-5 relative w-full h-[380px] sm:h-[460px]"
           style={{
             transform: `translate(${mousePosition.x * 0.4}px, ${mousePosition.y * 0.4}px)`,
           }}
@@ -171,15 +171,15 @@ export default function Hero({ onOpenEstimator, onScrollToContact }: HeroProps) 
                 <span className="font-mono text-xs font-bold text-gray-200 tracking-wider">VORTEX CORE ENGINE</span>
               </div>
               
-              <div className="flex gap-2">
-                {['latency', 'bandwidth'].map((tab) => (
+              <div className="flex gap-1 bg-[#090909] p-1 rounded-lg border border-white/5">
+                {['latency', 'bandwidth', 'system'].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab as any)}
-                    className={`px-2.5 py-1 rounded font-mono text-[9px] uppercase tracking-wider cursor-pointer ${
+                    className={`px-2 py-1 rounded font-mono text-[8px] sm:text-[9px] uppercase tracking-wider cursor-pointer transition-all duration-300 ${
                       activeTab === tab 
-                        ? 'bg-brand-red text-black font-bold' 
-                        : 'text-gray-500 hover:text-gray-300'
+                        ? 'bg-brand-red text-black font-extrabold shadow-[0_0_10px_rgba(255,30,39,0.3)]' 
+                        : 'text-gray-400 hover:text-white'
                     }`}
                   >
                     {tab}
@@ -189,76 +189,99 @@ export default function Hero({ onOpenEstimator, onScrollToContact }: HeroProps) 
             </div>
 
             {/* Main Center Telemetry Graphic */}
-            <div className="my-4 flex-1 flex flex-col justify-center space-y-4">
+            <div className="my-2 flex-1 flex flex-col justify-center">
               
               {/* Active Tab Screen 1: Latency simulation */}
               {activeTab === 'latency' && (
-                <div className="space-y-3.5">
+                <div className="space-y-3">
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-gray-400">EDGE RESPONSE TICK</span>
-                    <span className="text-green-500">{techTicks.latency}ms</span>
+                    <span className="text-green-400 font-bold glow-text-red">{techTicks.latency}ms</span>
                   </div>
                   {/* Visual simulated bar graphs */}
-                  <div className="h-20 flex gap-1 items-end bg-[#050505] p-2 rounded border border-white/5 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-cyber-grid opacity-30" />
-                    {[...Array(18)].map((_, i) => {
-                      const h = Math.abs(Math.sin(i * 0.4 + scrollY * 0.05)) * 90 + 5;
+                  <div className="h-24 flex gap-1 items-end bg-[#030303] p-2.5 rounded border border-white/5 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-cyber-grid opacity-25" />
+                    {[...Array(20)].map((_, i) => {
+                      const h = Math.abs(Math.sin(i * 0.35 + scrollY * 0.08)) * 85 + 10;
                       return (
                         <div 
                           key={i} 
-                          className="flex-1 bg-gradient-to-t from-brand-red-deep to-brand-red rounded-sm transition-all duration-300"
+                          className="flex-1 bg-gradient-to-t from-red-950 via-brand-red-deep to-brand-red rounded-sm transition-all duration-300"
                           style={{ height: `${h}%` }}
                         />
                       );
                     })}
                   </div>
-                  <div className="flex items-center justify-between font-mono text-[9px] text-gray-500">
-                    <span>INDEX: RED_LATENCY_STREAM_L1</span>
-                    <span>CORE REACTION STABLE</span>
+                  <div className="flex items-center justify-between font-mono text-[8px] text-gray-500">
+                    <span>COGNITIVE RESPONSIV_L1</span>
+                    <span className="text-brand-red">STABLE PIPELINE ACTIVE</span>
                   </div>
                 </div>
               )}
 
               {/* Active Tab Screen 2: Bandwidth simulation */}
               {activeTab === 'bandwidth' && (
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-gray-400">FPS REFRESH FREQUENCY</span>
-                    <span className="text-brand-red">{techTicks.fps} FPS</span>
+                    <span className="text-brand-red font-extrabold">{techTicks.fps} FPS</span>
                   </div>
                   {/* Radial dials simulation via grid metrics */}
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { label: 'SEO SCORE', val: '100%', c: 'text-emerald-400' },
-                      { label: 'ACCESSIBLE', val: 'AAA', c: 'text-brand-red' },
-                      { label: 'CO2 SAVED', val: '93%', c: 'text-emerald-400' },
+                      { label: 'LIGHTHOUSE', val: '100%', c: 'text-emerald-400' },
+                      { label: 'ACCESSIBLE', val: 'A++', c: 'text-brand-red glow-text-red' },
+                      { label: 'CO2 SAVED', val: '97.4%', c: 'text-emerald-400' },
                     ].map((dial, idx) => (
-                      <div key={idx} className="p-3 rounded bg-black/60 border border-white/5 text-center">
-                        <span className="font-mono text-[8px] text-gray-500 block">{dial.label}</span>
-                        <span className={`font-display font-extrabold text-sm block mt-1 ${dial.c}`}>{dial.val}</span>
+                      <div key={idx} className="p-3 rounded bg-[#030303] border border-white/5 text-center flex flex-col justify-between h-16">
+                        <span className="font-mono text-[8px] text-gray-500 block uppercase tracking-wider">{dial.label}</span>
+                        <span className={`font-display font-extrabold text-sm block tracking-tight ${dial.c}`}>{dial.val}</span>
                       </div>
                     ))}
                   </div>
-                  <p className="text-[10px] text-gray-500 font-mono text-center leading-relaxed">// Verified by structural analytics engines under 120fps physics engines.</p>
+                  <p className="text-[9px] text-gray-500 font-mono text-center leading-relaxed">// Checked & verified under 120Hz physics layout matrices.</p>
+                </div>
+              )}
+
+              {/* Active Tab Screen 3: System logs terminal */}
+              {activeTab === 'system' && (
+                <div className="space-y-2 font-mono text-[9px] text-gray-400 bg-[#030303] p-3 rounded border border-white/5 h-36 overflow-hidden flex flex-col justify-between">
+                  <div className="space-y-1">
+                    <div className="text-brand-red flex items-center gap-1.5 font-bold">
+                      <Terminal className="w-3.5 h-3.5" />
+                      <span>STATION_INITIALIZE_SUCCESS</span>
+                    </div>
+                    <div className="text-gray-500">// UTC: {new Date().toISOString()}</div>
+                    <div className="text-green-400 flex items-center gap-1">
+                      <span>● CODE STREAM</span>
+                      <span className="text-gray-400">VITE_DOM_RELOAD: COMPLETED</span>
+                    </div>
+                    <div className="text-gray-400">PORT: 3000 // HOST_ADDRESS: 0.0.0.0</div>
+                    <div className="text-yellow-500">WARNING: STYLING_FLOW_EXTREME_MODERN</div>
+                  </div>
+                  <div className="border-t border-white/5 pt-1 text-[8px] text-gray-500 flex justify-between">
+                    <span>SECTOR_LOAD: {techTicks.systemLoad}%</span>
+                    <span>SSL_CONNECT_SECURE</span>
+                  </div>
                 </div>
               )}
 
             </div>
 
             {/* Bottom Deck metrics readout */}
-            <div className="border-t border-white/5 pt-4 flex justify-between items-center">
+            <div className="border-t border-white/5 pt-3.5 flex justify-between items-center">
               <div className="font-mono text-[9px] text-gray-500 space-y-0.5">
-                <div>SYS STATUS: STABLE</div>
-                <div>RENDER COORD: {mousePosition.x.toFixed(1)}, {mousePosition.y.toFixed(1)}</div>
+                <div>SYS STATUS: OPERATIONAL</div>
+                <div>CURSOR REL: {mousePosition.x.toFixed(1)}px, {mousePosition.y.toFixed(1)}px</div>
               </div>
 
               {/* Action Blueprint Button */}
               <button
                 onClick={onOpenEstimator}
-                className="px-4 py-2 bg-white/5 hover:bg-brand-red/15 border border-white/10 hover:border-brand-red/60 rounded font-mono text-[9px] text-gray-300 hover:text-white uppercase tracking-widest cursor-pointer flex items-center gap-1.5 active:scale-95 transition-luxury"
+                className="px-4 py-2 bg-brand-red/10 hover:bg-brand-red/25 border border-brand-red/25 hover:border-brand-red/70 rounded font-mono text-[9px] text-white hover:text-white uppercase tracking-widest cursor-pointer flex items-center gap-1.5 active:scale-95 transition-luxury shadow-[0_0_15px_rgba(255,30,39,0.1)]"
               >
                 <span>Calibrate</span>
-                <Zap className="w-3 h-3 text-brand-red" />
+                <Zap className="w-3 h-3 text-brand-red animate-pulse" />
               </button>
             </div>
 
